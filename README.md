@@ -116,7 +116,7 @@ MentorMate is an iOS app that allows students to find and match with mentors/tut
 | image       |URL                  |image that user posts                                |
 | description | String              | information about the user (courses, wage, etc.)    |
 | matches     |List <String>        | list of unique users the user matched with          |
-| messages    |List <List<Message>> | chat messages user has with others                  | 
+| messages    |List <List< Message >> | chat messages user has with others                  | 
 | isStudent   | Boolean             | true if user is a student, false if user is a tutor |
 | settings    | String              | settings/preferences for each user                  |
 
