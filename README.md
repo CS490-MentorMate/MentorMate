@@ -4,6 +4,7 @@
 1. [Overview](#Overview)
 2. [Product Spec](#Product-Spec)
 3. [Wireframe](#Wireframe)
+4. [Schema](#Schema)
 
 ## Overview
 
@@ -102,3 +103,155 @@ MentorMate is an iOS app that allows students to find and match with mentors/tut
 
 ## Wireframe
 ![An image containing our wireframe](wireframe.jpg)
+
+## Schema
+
+### Models
+
+#### User
+
+| Property    | Type                | Description                                         |
+| --------    | -----               | -----------                                         |
+| objectId    | String              | unique username for the user                        |
+| image       |URL                  |image that user posts                                |
+| description | String              | information about the user (courses, wage, etc.)    |
+| matches     |List <String>        | list of unique users the user matched with          |
+| messages    |List <List<Message>> | chat messages user has with others                  | 
+| isStudent   | Boolean             | true if user is a student, false if user is a tutor |
+| settings    | String              | settings/preferences for each user                  |
+
+#### Message
+
+| Property | Type   | Description         |
+| -------- | -------| --------            |
+|  text    | String | Text in the message |
+|  Sender  | String | userId              |
+
+### Networking
+
+#### List of network requests by screen
+* Home Screen (Swiping screen)
+    * (Read/GET) Query tutors to swipe left or right on
+    ```swift
+         let query = PFQuery(className:"Users")
+         query.whereKey("isStudent", equalTo: false)
+         query.order(byDescending: "createdAt")
+         query.findObjectsInBackground { (users: [PFObject]?, error: Error?) in
+            if let error = error { 
+               print(error.localizedDescription)
+            } else if let users = users {
+               print("Successfully retrieved \(users.count) users.")
+           // TODO: Do something with users...
+            }
+         }
+         ```
+* Matches/Chat Screen
+    * (Read/GET) Query all users that the current user has matched with (their matches property)
+    ```swift
+         let query = PFQuery(className:"Users")
+         query.whereKey("matches.objectId", equalTo: users.objectId)
+         query.order(byDescending: "createdAt")
+         query.findObjectsInBackground { (users: [PFObject]?, error: Error?) in
+            if let error = error { 
+               print(error.localizedDescription)
+            } else if let users = users {
+               print("Successfully retrieved \(users.count) users.")
+           // TODO: Do something with retrieved users (they are users that matched with current user)...
+            }
+         }
+         ```
+* Profile Screen
+    * (Read/GET) Query logged in user information
+    ```swift
+         let query = PFQuery(className:"Users")
+         query.whereKey("objectId", equalTo: userEnteredName)
+         query.findObjectsInBackground { (username: [PFObject]?, error: Error?) in
+            if let error = error { 
+               print(error.localizedDescription)
+            } else if let username = username {
+           // TODO: Display all user information on profile screen...
+            }
+         }
+    ```
+    * (Update/PUT) Update/change info in Profile
+    ```swift
+    let query = PFQuery(className:"User")
+    query.getObjectInBackground(withId: "user") { (description: PFObject?, error: Error?) in
+        if let error = error {
+            print(error.localizedDescription)
+        } else if let description = description {
+            user["description"] = "stuff" //user enters new description
+            user.saveInBackground()
+        }
+    }
+    ```
+* Settings Screen
+    * (Read/GET) View current settings which includes location, distance, age and gender preferences
+    ```swift
+         let query = PFQuery(className:"Users")
+         query.whereKey("objectId", equalTo: userEnteredName)
+         query.findObjectsInBackground { (username: [PFObject]?, error: Error?) in
+            if let error = error { 
+               print(error.localizedDescription)
+            } else if let username = username {
+           // TODO: Display all user settings on settings screen...
+            }
+         }
+    ```
+    * (Update/PUT) Update settings with new preferences
+     ```swift
+    let query = PFQuery(className:"User")
+    query.getObjectInBackground(withId: "user") { (settings: PFObject?, error: Error?) in
+        if let error = error {
+            print(error.localizedDescription)
+        } else if let description = description {
+            user["settings"] = "new settings" //new user settings
+            user.saveInBackground()
+        }
+    }
+    ```
+* Login Screen
+    * (Read/GET) Get user's credentials from database and match passwords 
+    ```swift
+         let query = PFQuery(className:"Users")
+         query.whereKey("objectId", equalTo: userEnteredName)
+         query.findObjectsInBackground { (password: [PFObject]?, error: Error?) in
+            if let error = error { 
+               print(error.localizedDescription)
+            } else if let userEnteredPassword = password {
+               print("Successful login")
+           // TODO: Redirect user home screen for succcessful login
+            }
+         }
+         ```
+* Registration Screen
+    * (Create/POST) Create a new user
+         ```swift
+         let newUser = PFObject(className:"User")
+         newUser["objectId"] = "username" //valid username that user chooses
+         newUser["image"] = "url" //some image url user chooses
+         newUser["description"] = "bio"
+         newUser["matches"] = null
+         newUser["messages"] = null
+         newUser["isStudent"] = true //if user is a student, false otherwise
+         newUser.saveInBackground { (succeeded, error)  in
+            if (succeeded) {
+                // The object has been saved.
+            } else {
+                // There was a problem, check error.description
+            }
+        }
+         ```
+    * (Read/GET) Get data of other users to check if the username already exists
+     ```swift
+         let query = PFQuery(className:"Users")
+         query.whereKey("objectId", equalTo: userEnteredName)
+         query.findObjectsInBackground { (username: [PFObject]?, error: Error?) in
+            if let error = error { 
+               print(error.localizedDescription)
+            } else if let username = username {
+               print("Username already exists! Please choose another name.")
+           // TODO: Redirect user to type in a valid username...
+            }
+         }
+    ```
