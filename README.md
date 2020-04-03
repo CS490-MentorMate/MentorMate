@@ -30,12 +30,12 @@ MentorMate is an iOS app that allows students to find and match with mentors/tut
 
 **Required Must-have Stories**
 
- [ ] User can Sign Up 
- [ ] User can login
- [ ] User can logout 
- [ ] User can like (swipe right) or dislike (swipe left) a description of the mentor/student
- [ ] User can view a feed of different students/mentors
- [ ] User can chat with the mentor/student if matched
+ - [ ] User can Sign Up 
+ - [ ] User can login
+ - [ ] User can logout 
+ - [ ] User can like (swipe right) or dislike (swipe left) a description of the mentor/student
+ - [ ] User can view a feed of different students/mentors
+ - [ ] User can chat with the mentor/student if matched
  
  
 **Optional Nice-to-have Stories**
