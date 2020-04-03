@@ -79,11 +79,58 @@
                         <outlet property="passwordField" destination="a8C-QH-xgt" id="Ktv-NC-aaQ"/>
                         <outlet property="signupOrLoginButton" destination="ci3-uj-u2G" id="0U3-YK-j5N"/>
                         <outlet property="usernameField" destination="6zS-vq-UZF" id="07T-tI-rG7"/>
+                        <segue destination="ogO-vl-ayP" kind="presentation" identifier="loginSegue" modalPresentationStyle="fullScreen" id="1yt-Av-xXE"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="33.333333333333336" y="89.732142857142847"/>
+            <point key="canvasLocation" x="-175" y="88"/>
+        </scene>
+        <!--HomeViewController-->
+        <scene sceneID="Hur-E5-SVb">
+            <objects>
+                <viewController storyboardIdentifier="HomeViewController" title="HomeViewController" id="JGK-Pt-w6I" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="LMU-q1-bgK"/>
+                        <viewControllerLayoutGuide type="bottom" id="jNx-bp-tQS"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="egE-Tp-Ioa">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Welcome!" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Rjq-2g-JgQ">
+                                <rect key="frame" x="164" y="318" width="87" height="24"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="20"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                        </subviews>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                    </view>
+                    <navigationItem key="navigationItem" id="g3U-md-fh1"/>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="GJh-bk-7p4" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1660.8695652173915" y="88.392857142857139"/>
+        </scene>
+        <!--Navigation Controller-->
+        <scene sceneID="ZYI-7G-r8c">
+            <objects>
+                <navigationController storyboardIdentifier="HomeScreens" automaticallyAdjustsScrollViewInsets="NO" id="ogO-vl-ayP" sceneMemberID="viewController">
+                    <toolbarItems/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="V6B-c7-8bZ">
+                        <rect key="frame" x="0.0" y="44" width="414" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <nil name="viewControllers"/>
+                    <connections>
+                        <segue destination="JGK-Pt-w6I" kind="relationship" relationship="rootViewController" id="OgZ-Yd-sbY"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="wTN-qG-ECg" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="750.72463768115949" y="88.392857142857139"/>
         </scene>
     </scenes>
 </document>

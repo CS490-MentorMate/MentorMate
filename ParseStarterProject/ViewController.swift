@@ -119,6 +119,7 @@ class ViewController: UIViewController {
                     }
                     else {
                         print("Signed up!")
+                        self.performSegue(withIdentifier: "loginSegue", sender: nil)
                     }
                 }
             }
@@ -136,6 +137,7 @@ class ViewController: UIViewController {
                     }
                     else {
                         print("Logged in!")
+                        self.performSegue(withIdentifier: "loginSegue", sender: nil)
                     }
                 })
             }
