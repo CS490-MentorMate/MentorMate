@@ -8,9 +8,18 @@
 */
 
 import UIKit
+import Parse
 
 class ViewController: UIViewController {
 
+    var signupMode = true
+    
+    @IBOutlet weak var usernameField: UITextField!
+    @IBOutlet weak var passwordField: UITextField!
+    @IBOutlet weak var signupOrLoginButton: UIButton!
+    @IBOutlet weak var changeSignupModeButton: UIButton!
+    @IBOutlet weak var accountQuestionLabel: UILabel!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
@@ -79,7 +88,76 @@ class ViewController: UIViewController {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
-
-
+    
+    @IBAction func signupOrLogin(_ sender: Any) {
+        if (usernameField.text == "") {
+            let alert = UIAlertController.init(title: "", message: "Enter a Username!", preferredStyle: .alert)
+            alert.addAction(UIAlertAction(title: "OK", style: .default, handler: nil))
+            self.present(alert, animated:true)
+        }
+        else if (passwordField.text == "") {
+            let alert = UIAlertController.init(title: "", message: "Enter a Password!", preferredStyle: .alert)
+            alert.addAction(UIAlertAction(title: "OK", style: .default, handler: nil))
+            self.present(alert, animated:true)
+        }
+        else {
+            if signupMode {
+            let user = PFUser()
+                user.username = usernameField.text
+                user.password = passwordField.text
+            
+                user.signUpInBackground { (success, error) in
+                    if error != nil {
+                        var errorMessage = "Signup Failed! Please try again."
+                        let error = error as NSError?
+                        if let parseError = error?.userInfo["error"] as? String {
+                            errorMessage = parseError
+                        }
+                        let alert = UIAlertController.init(title:"", message: errorMessage, preferredStyle: .alert)
+                        alert.addAction(UIAlertAction(title: "OK", style: .default, handler: nil))
+                        self.present(alert, animated: true)
+                    }
+                    else {
+                        print("Signed up!")
+                    }
+                }
+            }
+            else {
+                PFUser.logInWithUsername(inBackground: usernameField.text!, password: passwordField.text!, block: { (user, error) in
+                    if error != nil {
+                        var errorMessage = "Login Failed! Please try again."
+                        let error = error as NSError?
+                        if let parseError = error?.userInfo["error"] as? String {
+                            errorMessage = parseError
+                        }
+                        let alert = UIAlertController.init(title:"", message: errorMessage, preferredStyle: .alert)
+                        alert.addAction(UIAlertAction(title: "OK", style: .default, handler: nil))
+                        self.present(alert, animated: true)
+                    }
+                    else {
+                        print("Logged in!")
+                    }
+                })
+            }
+        }
+    }
+    
+    @IBAction func changeSignupMode(_ sender: Any) {
+        
+        if signupMode {
+            signupMode = false
+            signupOrLoginButton.setTitle("Log In", for: []) //for:[] means for the default control state
+            changeSignupModeButton.setTitle("Sign Up", for: [])
+            accountQuestionLabel.text = "Don't Have an Account?"
+            signupOrLogin(sender)
+        }
+        else {
+            signupMode = true
+            signupOrLoginButton.setTitle("Sign Up", for: [])
+            changeSignupModeButton.setTitle("Log In", for: [])
+            accountQuestionLabel.text = "Already Have an Account?"
+            signupOrLogin(sender)
+        }
+    }
 }
 
