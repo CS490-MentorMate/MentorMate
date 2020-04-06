@@ -258,7 +258,9 @@ MentorMate is an iOS app that allows students to find and match with mentors/tut
 ## Video Walkthroughs
 
 Login
-<img src='http://g.recordit.co/0lNBqp8iNO.gif' title='Video Walkthrough' width='' alt='Video Walkthrough' />
 
+<img src='http://g.recordit.co/0lNBqp8iNO.gif' title='Video Walkthrough' width='' alt='Video Walkthrough' />
+ 
 Signup
+
 <img src='http://g.recordit.co/OJ4RWtrw1m.gif' title='Video Walkthrough' width='' alt='Video Walkthrough' />
