@@ -5,7 +5,7 @@
 2. [Product Spec](#Product-Spec)
 3. [Wireframe](#Wireframe)
 4. [Schema](#Schema)
-5. [Video Walkthroughs] (#Video-Walkthroughs)
+5. [Video Walkthroughs] (#video-walkthroughs)
 
 ## Overview
 
