@@ -26,7 +26,8 @@ class ViewController: UIViewController {
         
         let label = UILabel(frame: CGRect(x: self.view.bounds.width / 2 - 100, y: self.view.bounds.height / 2 - 50, width: 200, height: 100))
         
-        label.text = "Drag me!"
+        //label.text = "Drag me!"
+        label.text = ""
         
         label.textAlignment = NSTextAlignment.center
         
