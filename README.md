@@ -5,6 +5,7 @@
 2. [Product Spec](#Product-Spec)
 3. [Wireframe](#Wireframe)
 4. [Schema](#Schema)
+5. [Video Walkthrough](#Video Walkthrough)
 
 ## Overview
 
@@ -257,7 +258,7 @@ MentorMate is an iOS app that allows students to find and match with mentors/tut
             }
          }
     ```
-## Video Walkthroughs
+### Video Walkthroughs
 
 Login
 
