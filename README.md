@@ -43,9 +43,9 @@ MentorMate is an iOS app that allows students to find and match with mentors/tut
  
 **Optional Nice-to-have Stories**
 
- [ ] User can edit, view their profile/description
- [ ] User can view other users' profiles
- [ ] User can Video chat with a matched user
+- [ ] User can edit, view their profile/description
+- [ ] User can view other users' profiles
+- [ ] User can Video chat with a matched user
 
 ### 2. Screen Archetypes
 
