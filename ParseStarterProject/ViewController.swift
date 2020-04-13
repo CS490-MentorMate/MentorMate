@@ -20,24 +20,17 @@ class ViewController: UIViewController {
     @IBOutlet weak var changeSignupModeButton: UIButton!
     @IBOutlet weak var accountQuestionLabel: UILabel!
     
+    override func viewDidAppear(_ animated: Bool) {
+        if PFUser.current() != nil {
+            performSegue(withIdentifier: "goToUserInfo", sender: self)
+        }
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
         
-        let label = UILabel(frame: CGRect(x: self.view.bounds.width / 2 - 100, y: self.view.bounds.height / 2 - 50, width: 200, height: 100))
         
-        //label.text = "Drag me!"
-        label.text = ""
-        
-        label.textAlignment = NSTextAlignment.center
-        
-        view.addSubview(label)
-        
-        let gesture = UIPanGestureRecognizer(target: self, action: #selector(self.wasDragged(gestureRecognizer:)))
-        
-        label.isUserInteractionEnabled = true
-        
-        label.addGestureRecognizer(gesture)
         
     }
     
@@ -106,6 +99,9 @@ class ViewController: UIViewController {
             let user = PFUser()
                 user.username = usernameField.text
                 user.password = passwordField.text
+                let acl = PFACL()
+                acl.getPublicWriteAccess = true
+                user.acl = acl
             
                 user.signUpInBackground { (success, error) in
                     if error != nil {
@@ -120,7 +116,7 @@ class ViewController: UIViewController {
                     }
                     else {
                         print("Signed up!")
-                        self.performSegue(withIdentifier: "loginSegue", sender: nil)
+                        self.performSegue(withIdentifier: "goToUserInfo", sender: nil)
                     }
                 }
             }
@@ -138,7 +134,7 @@ class ViewController: UIViewController {
                     }
                     else {
                         print("Logged in!")
-                        self.performSegue(withIdentifier: "loginSegue", sender: nil)
+                        self.performSegue(withIdentifier: "goToUserInfo", sender: nil)
                     }
                 })
             }
@@ -163,4 +159,3 @@ class ViewController: UIViewController {
         }
     }
 }
-
