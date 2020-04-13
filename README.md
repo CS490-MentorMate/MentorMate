@@ -2,10 +2,9 @@
 
 ## Table of Contents
 1. [Overview](#Overview)
-2. [Video Walkthroughs] (#Video-Walkthroughs)
-3. [Product Spec](#Product-Spec)
-4. [Wireframe](#Wireframe)
-5. [Schema](#Schema) 
+2. [Product Spec](#Product-Spec)
+3. [Wireframe](#Wireframe)
+4. [Schema](#Schema) 
 
 ## Overview
 
@@ -26,19 +25,6 @@ MentorMate is an iOS app that allows students to find and match with mentors/tut
 
 - **Scope:** Students will be able to view tutor cards on their dashboard. A potential match or a right swipe would mean that the tutor is skilled at a course that the student needs help in. Per say, the app segregates users into two groups namely students and tutors. 
 
-## Video Walkthroughs
-
-Login
-
-<img src='http://g.recordit.co/0lNBqp8iNO.gif' title='Video Walkthrough' width='' alt='Video Walkthrough' />
- 
-Signup
-
-<img src='http://g.recordit.co/OJ4RWtrw1m.gif' title='Video Walkthrough' width='' alt='Video Walkthrough' />
-
-Sprint 2 
-
-<img src='http://g.recordit.co/gCJnbXRuKL.gif' title='Video Walkthrough' width='' alt='Video Walkthrough' />
 
 ## Product Spec
 ### 1.User Stories (Required and Optional)
@@ -273,3 +259,16 @@ Sprint 2
          }
     ```
 
+## Video Walkthroughs
+
+Login
+
+<img src='http://g.recordit.co/0lNBqp8iNO.gif' title='Video Walkthrough' width='' alt='Video Walkthrough' />
+ 
+Signup
+
+<img src='http://g.recordit.co/OJ4RWtrw1m.gif' title='Video Walkthrough' width='' alt='Video Walkthrough' />
+
+Sprint 2 
+
+<img src='http://g.recordit.co/gCJnbXRuKL.gif' title='Video Walkthrough' width='' alt='Video Walkthrough' />
