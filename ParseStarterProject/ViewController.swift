@@ -21,8 +21,23 @@ class ViewController: UIViewController {
     @IBOutlet weak var accountQuestionLabel: UILabel!
     
     override func viewDidAppear(_ animated: Bool) {
+        redirectUser()
+    }
+    
+    func redirectUser(){
         if PFUser.current() != nil {
-            performSegue(withIdentifier: "goToUserInfo", sender: self)
+            
+            if PFUser.current()?["isTutor"] != nil && PFUser.current()?["isTeaching"] != nil && PFUser.current()?["photo"] != nil {
+                
+                performSegue(withIdentifier: "swipeFromInitialSegue", sender: self)
+                
+                
+            } else {
+                
+                performSegue(withIdentifier: "goToUserInfo", sender: self)
+                
+            }
+            
         }
     }
     
@@ -101,6 +116,7 @@ class ViewController: UIViewController {
                 user.password = passwordField.text
                 let acl = PFACL()
                 acl.getPublicWriteAccess = true
+                acl.getPublicReadAccess = true
                 user.acl = acl
             
                 user.signUpInBackground { (success, error) in
@@ -134,7 +150,7 @@ class ViewController: UIViewController {
                     }
                     else {
                         print("Logged in!")
-                        self.performSegue(withIdentifier: "goToUserInfo", sender: nil)
+                        self.redirectUser()
                     }
                 })
             }
