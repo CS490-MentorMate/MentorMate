@@ -48,8 +48,8 @@ class UserDetailsViewController: UIViewController, UINavigationControllerDelegat
     @IBOutlet var errorLabel: UILabel!
     
     @IBAction func update(_ sender: Any) {
-        PFUser.current()?["isTutor"] = occupationSwitch.isOn
-        PFUser.current()?["isTeaching"] = likeToSwitch.isOn
+        PFUser.current()?["isTutor"] = !occupationSwitch.isOn
+        PFUser.current()?["isTeaching"] = !likeToSwitch.isOn
         //let imageData = UIImagePNGRepresentation(userImage.image!)
         let imageData = UIImageJPEGRepresentation(userImage.image!,0.1)
 

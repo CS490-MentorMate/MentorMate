@@ -84,9 +84,9 @@ class SwipingViewController: UIViewController {
         
         print(PFUser.current())
         
-        query?.whereKey("isTutor", equalTo: (PFUser.current()?["isTeaching"])!)
+        query?.whereKey("isTutor", notEqualTo: (PFUser.current()?["isTeaching"]))
         
-        query?.whereKey("isTeaching", equalTo: (PFUser.current()?["isTutor"])!)
+        query?.whereKey("isTeaching", notEqualTo: (PFUser.current()?["isTutor"]))
         
         var ignoredUsers = [""]
         
@@ -103,6 +103,14 @@ class SwipingViewController: UIViewController {
         }
         
         query?.whereKey("objectId", notContainedIn: ignoredUsers)
+        
+        query?.whereKey("objectId", notEqualTo: PFUser.current()?["objectId"])
+        
+        if let latitude = (PFUser.current()?["location"] as AnyObject).latitude {
+            if let longitude = (PFUser.current()?["location"] as AnyObject).longitude {
+                query?.whereKey("location", withinGeoBoxFromSouthwest: PFGeoPoint(latitude: latitude - 1, longitude: longitude - 1), toNortheast: PFGeoPoint(latitude: latitude + 1, longitude: longitude + 1))
+            }
+        }
         
         query?.limit = 1
         
@@ -156,6 +164,13 @@ class SwipingViewController: UIViewController {
         swipeImage.isUserInteractionEnabled = true
         
         swipeImage.addGestureRecognizer(gesture)
+        
+        PFGeoPoint.geoPointForCurrentLocation { (geopoint, error) in
+            if let geopoint = geopoint {
+                PFUser.current()?["location"] = geopoint
+                PFUser.current()?.saveInBackground()
+            }
+        }
         
         updateImage()
         

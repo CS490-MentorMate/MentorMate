@@ -174,4 +174,8 @@ class ViewController: UIViewController {
             signupOrLogin(sender)
         }
     }
+    
+    @IBAction func onTap(_ sender: Any) {
+        view.endEditing(true)
+    }
 }
