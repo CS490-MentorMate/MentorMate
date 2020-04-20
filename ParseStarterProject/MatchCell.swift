@@ -7,14 +7,26 @@
 //
 
 import UIKit
+import Parse
 
 class MatchCell: UITableViewCell {
     
     
+    @IBOutlet weak var messagesLabel: UILabel!
+    @IBOutlet weak var userIdLabel: UILabel!
     @IBOutlet weak var profilePicture: UIImageView!
     @IBOutlet weak var matchName: UILabel!
-    @IBOutlet weak var lastMessage: UILabel!
+    @IBOutlet weak var messagesTextField: UITextField!
     
+    @IBAction func send(_ sender: Any) {
+        var message = PFObject(className: "Message")
+        message["sender"] = PFUser.current()?.objectId!
+        message["recipient"] = userIdLabel.text
+        message["content"] = messagesTextField.text
+        
+        message.saveInBackground()
+        
+    }
     override func awakeFromNib() {
         super.awakeFromNib()
         // Initialization code

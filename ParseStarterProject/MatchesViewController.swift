@@ -19,6 +19,8 @@ class MatchesViewController: UIViewController, UITableViewDelegate, UITableViewD
     
     var objectIds = [String]()
     
+    var messages = [String]()
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -27,31 +29,54 @@ class MatchesViewController: UIViewController, UITableViewDelegate, UITableViewD
         query?.whereKey("objectId", containedIn: PFUser.current()?["accepted"] as! [String])
         
         query?.findObjectsInBackground(block: { (objects, error) in     //gets an array of objects; array name: objects
-            print("objects: \(objects)")
+
             if let users = objects {        //puts the objects array into users and checks if the array exists
-                print("here 1")
                 for object in users {
-                    print("here 2")
                     if let user = object as? PFUser {
-                        print("here 3")
                         let imageFile = user["photo"] as! PFFile
-                        print("file: \(imageFile)")
                         imageFile.getDataInBackground { (data, error) in
                             if let imageData = data {
-                                print("data: \(imageData)")
-                                self.images.append(UIImage(data: imageData)!)
+//                                self.images.append(UIImage(data: imageData)!)
+//                                self.objectIds.append(user.objectId!)
+//                                self.names.append(user.username!)
+//                                self.matchesTable.reloadData();
+//                                
+                                let messageQuery = PFQuery(className: "Message")
+                                messageQuery.whereKey("recipient", equalTo: (PFUser.current()?.objectId!)!)
+                                messageQuery.whereKey("sender", equalTo: user.objectId!)
+                                messageQuery.findObjectsInBackground { (objects, error) in
+                                    var messageText = "No message from this user."
+                                    if let objects = objects {
+                                        for message in objects {
+                                                if let messageContent = message["content"] as? String {
+                                                    messageText = messageContent
+                                                }
+                                        }
+                                    }
+                                    
+                                    print(messageText)
+                                    
+                                    self.messages.append(messageText)
+                                    self.images.append(UIImage(data: imageData)!)
+                                    self.objectIds.append(user.objectId!)
+                                    self.names.append(user.username!)
+                                    self.matchesTable.reloadData()
+                                    
+                                }
+                                
                             }
                         }
-                        if let name = user["username"] as? String {
-                            print(name)
-                            self.names.append(name)
-                        }
-                        if let objectId = user.objectId as? String {
-                            self.objectIds.append(objectId)
-                        }
+//                        if let name = user["username"] as? String {
+//                            self.names.append(name)
+//                            self.matchesTable.reloadData();
+//                        }
+//                        if let objectId = user.objectId as? String {
+//                            self.objectIds.append(objectId)
+//                            self.matchesTable.reloadData();
+//                        }
                     }
                 }
-                self.matchesTable.reloadData()
+               // self.matchesTable.reloadData()
             }
         })
         //print("match: \(matchedUsers)")
@@ -59,8 +84,12 @@ class MatchesViewController: UIViewController, UITableViewDelegate, UITableViewD
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        print(names.count)
-        return names.count
+        print("name count: \(names.count)")
+        return images.count
+    }
+    
+    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+        return 190;
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
@@ -70,6 +99,8 @@ class MatchesViewController: UIViewController, UITableViewDelegate, UITableViewD
         
         cell.profilePicture.image = images[indexPath.row]
         cell.matchName.text = names[indexPath.row]
+        cell.userIdLabel.text = objectIds[indexPath.row]
+        cell.messagesLabel.text = messages[indexPath.row]
         
         return cell
     }
