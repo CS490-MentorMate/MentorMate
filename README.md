@@ -35,10 +35,10 @@ MentorMate is an iOS app that allows students to find and match with mentors/tut
  - [x] User can login
  - [x] User can choose to be a tutor or student.
  - [x] User can upload pictures.  
- - [ ] User can logout 
- - [ ] User can like (swipe right) or dislike (swipe left) a description of the mentor/student
+ - [x] User can logout 
+ - [x] User can like (swipe right) or dislike (swipe left) a description of the mentor/student
  - [ ] User can view a feed of different students/mentors
- - [ ] User can chat with the mentor/student if matched
+ - [x] User can chat with the mentor/student if matched
  
  
 **Optional Nice-to-have Stories**
@@ -273,6 +273,6 @@ Sprint 2
 
 <img src='http://g.recordit.co/gCJnbXRuKL.gif' title='Video Walkthrough' width='' alt='Video Walkthrough' />
 
-Sprint 3 - Swiping, Obtaining and Seeing Matches, Messaging
+Sprint 3 - Swiping, Obtaining and Seeing Matches, Messaging (you may need to click gif to play the gif)
 
-<a href="https://gifyu.com/image/lg67"><img src="https://s4.gifyu.com/images/MentorMate3.th.gif" alt="MentorMate3.gif" border="0" /></a>
+<a href="https://gifyu.com/image/lg67"><img src="https://s4.gifyu.com/images/MentorMate3.md.gif" alt="MentorMate3.gif" border="0" /></a>
