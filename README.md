@@ -272,3 +272,7 @@ Signup
 Sprint 2 
 
 <img src='http://g.recordit.co/gCJnbXRuKL.gif' title='Video Walkthrough' width='' alt='Video Walkthrough' />
+
+Sprint 3 - Swiping, Obtaining and Seeing Matches, Messaging
+
+<img src='https://s4.gifyu.com/images/MentorMate3.gif' title='Video Walkthrough' width='' alt='Video Walkthrough' />
