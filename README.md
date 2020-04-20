@@ -275,4 +275,4 @@ Sprint 2
 
 Sprint 3 - Swiping, Obtaining and Seeing Matches, Messaging
 
-![MentorMate3.gif](https://s4.gifyu.com/images/MentorMate3.gif)
+[![MentorMate3.gif](https://s4.gifyu.com/images/MentorMate3.gif)](https://gifyu.com/image/lg67)
