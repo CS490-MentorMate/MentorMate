@@ -179,14 +179,11 @@ class SwipingViewController: UIViewController {
     
     
     
-    func prepare(for segue: UIStoryboardSegue, sender: AnyObject?) {
-        
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.identifier == "logoutSegue" {
-            
             PFUser.logOut()
-            
+            print("logout worked")
         }
-        
     }
     
 
