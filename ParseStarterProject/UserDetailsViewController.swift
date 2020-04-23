@@ -48,6 +48,10 @@ class UserDetailsViewController: UIViewController, UINavigationControllerDelegat
     @IBOutlet var errorLabel: UILabel!
     
     @IBAction func update(_ sender: Any) {
+        PFUser.current()?["name"] = "You do not have a name set!"
+        
+         PFUser.current()?["name"] = "No biography set"
+        
         PFUser.current()?["isTutor"] = !occupationSwitch.isOn
         PFUser.current()?["isTeaching"] = !likeToSwitch.isOn
         //let imageData = UIImagePNGRepresentation(userImage.image!)

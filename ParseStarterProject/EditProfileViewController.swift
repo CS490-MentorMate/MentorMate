@@ -11,6 +11,8 @@ import Parse
 
 class EditProfileViewController: UIViewController, UINavigationControllerDelegate, UIImagePickerControllerDelegate {
    
+    @IBOutlet weak var bioTextField: UITextField!
+    @IBOutlet weak var nameTextField: UITextField!
     @IBOutlet weak var profileTypeLabel: UILabel!
     @IBOutlet weak var profileImage: UIImageView!
     @IBOutlet weak var updateSuccessfulLabel: UILabel!
@@ -39,7 +41,19 @@ class EditProfileViewController: UIViewController, UINavigationControllerDelegat
     override func viewDidLoad() {
         super.viewDidLoad()
         
-            
+        
+//          PFUser.current()?.addUniqueObjects(from: [displayedUserID], forKey: acceptedOrRejected
+        
+        if let name = PFUser.current()?["name"] as? String {
+                self.nameTextField.text = name
+        }
+        
+        
+        if let bio = PFUser.current()?["biography"] as? String {
+            self.bioTextField.text = bio
+        }
+        
+        
             if let isTutor = PFUser.current()?["isTutor"] as? Bool {
                 if (isTutor) {
                     self.profileTypeLabel.text = "You are a tutor"
@@ -62,9 +76,16 @@ class EditProfileViewController: UIViewController, UINavigationControllerDelegat
     }
     
     @IBAction func update(_ sender: Any) {
+        
+        
+        
         let imageData = UIImageJPEGRepresentation(profileImage.image!,0.1)
         
           PFUser.current()?["photo"] = PFFile(name: "profile.png", data: imageData!)
+        
+        PFUser.current()?["name"] = self.nameTextField.text
+        
+         PFUser.current()?["biography"] = self.bioTextField.text
         
         PFUser.current()?.saveInBackground(block: { (success, error) in
             
