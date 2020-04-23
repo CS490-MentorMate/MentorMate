@@ -236,13 +236,23 @@
                                 <rect key="frame" x="0.0" y="52" width="414" height="44"/>
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
                                 <items>
-                                    <navigationItem title="MentorMate" id="74U-VE-ovc">
-                                        <barButtonItem key="leftBarButtonItem" title="Logout" id="isR-gm-Rbn">
-                                            <connections>
-                                                <segue destination="BYZ-38-t0r" kind="show" identifier="logoutSegue" id="NYU-Vq-Pcf"/>
-                                            </connections>
-                                        </barButtonItem>
-                                        <barButtonItem key="rightBarButtonItem" title="Matches" id="tDs-OA-lUe">
+                                    <navigationItem id="74U-VE-ovc">
+                                        <nil key="title"/>
+                                        <leftBarButtonItems>
+                                            <barButtonItem title="Item" image="logout" id="isR-gm-Rbn">
+                                                <inset key="largeContentSizeImageInsets" minX="0.0" minY="1" maxX="0.0" maxY="1"/>
+                                                <connections>
+                                                    <segue destination="BYZ-38-t0r" kind="show" identifier="logoutSegue" id="NYU-Vq-Pcf"/>
+                                                </connections>
+                                            </barButtonItem>
+                                            <barButtonItem title="Settngs" image="person" catalog="system" id="ePX-Ho-9YE">
+                                                <connections>
+                                                    <segue destination="bWr-CN-znZ" kind="show" id="2Eb-i1-IEN"/>
+                                                </connections>
+                                            </barButtonItem>
+                                        </leftBarButtonItems>
+                                        <barButtonItem key="rightBarButtonItem" title="Matches" image="text.bubble.fill" catalog="system" id="tDs-OA-lUe">
+                                            <inset key="largeContentSizeImageInsets" minX="0.0" minY="1" maxX="0.0" maxY="1"/>
                                             <connections>
                                                 <segue destination="X4S-IX-RgZ" kind="show" id="9F7-KN-h80"/>
                                             </connections>
@@ -377,11 +387,96 @@
             </objects>
             <point key="canvasLocation" x="2073.913043478261" y="87.723214285714278"/>
         </scene>
+        <!--Edit Profile View Controller-->
+        <scene sceneID="LCA-gf-Hs0">
+            <objects>
+                <viewController id="bWr-CN-znZ" customClass="EditProfileViewController" customModule="ParseStarterProject_Swift" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="5RM-uN-3c3"/>
+                        <viewControllerLayoutGuide type="bottom" id="wj1-KF-Slm"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="g4q-AB-h7S">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="842"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <navigationBar contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="BtN-Tg-87O">
+                                <rect key="frame" x="0.0" y="8" width="414" height="44"/>
+                                <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
+                                <items>
+                                    <navigationItem title="Settings" id="ira-gL-bzE">
+                                        <barButtonItem key="leftBarButtonItem" title="Back" id="UQ1-W7-wqi">
+                                            <connections>
+                                                <segue destination="rLK-H1-oTI" kind="show" id="O3l-EV-CyE"/>
+                                            </connections>
+                                        </barButtonItem>
+                                    </navigationItem>
+                                </items>
+                            </navigationBar>
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="wgL-TX-Ko2">
+                                <rect key="frame" x="97" y="133" width="211" height="206"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            </imageView>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="73J-vb-bjq">
+                                <rect key="frame" x="143" y="347" width="119" height="27"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="12"/>
+                                <state key="normal" title="Update Profile Image">
+                                    <color key="titleColor" white="0.66666666669999997" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                </state>
+                                <connections>
+                                    <action selector="updateProfileImage:" destination="bWr-CN-znZ" eventType="touchUpInside" id="AhL-pl-TSD"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="eZ5-U4-DSw">
+                                <rect key="frame" x="144" y="701" width="126" height="35"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <color key="backgroundColor" systemColor="systemPinkColor" red="1" green="0.1764705882" blue="0.33333333329999998" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <color key="tintColor" white="0.66666666666666663" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <state key="normal" title="Update">
+                                    <color key="titleColor" cocoaTouchSystemColor="tableCellGroupedBackgroundColor"/>
+                                </state>
+                                <connections>
+                                    <action selector="update:" destination="bWr-CN-znZ" eventType="touchUpInside" id="jYz-5J-Qai"/>
+                                </connections>
+                            </button>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="fyJ-0w-abS">
+                                <rect key="frame" x="111" y="744" width="197" height="21"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <color key="textColor" systemColor="systemPinkColor" red="1" green="0.1764705882" blue="0.33333333329999998" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="You are a Tutor" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="sVf-ab-rFJ">
+                                <rect key="frame" x="0.0" y="64" width="414" height="39"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <color key="backgroundColor" red="1" green="0.47617770746641008" blue="0.51431929668672671" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                                <fontDescription key="fontDescription" name=".AppleSystemUIFont" family=".AppleSystemUIFont" pointSize="24"/>
+                                <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                        </subviews>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                    </view>
+                    <navigationItem key="navigationItem" id="3Uz-de-ObI"/>
+                    <connections>
+                        <outlet property="profileImage" destination="wgL-TX-Ko2" id="nkC-OS-zAJ"/>
+                        <outlet property="profileTypeLabel" destination="sVf-ab-rFJ" id="b0W-O3-Bx3"/>
+                        <outlet property="updateSuccessfulLabel" destination="fyJ-0w-abS" id="kXo-vR-eUH"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="dHK-zE-0xa" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2886.9565217391305" y="99.776785714285708"/>
+        </scene>
     </scenes>
     <resources>
+        <image name="logout" width="50" height="50"/>
         <image name="man-image.png" width="215" height="234"/>
+        <image name="person" catalog="system" width="64" height="58"/>
+        <image name="text.bubble.fill" catalog="system" width="64" height="54"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="ERb-of-KBg"/>
+        <segue reference="O3l-EV-CyE"/>
     </inferredMetricsTieBreakers>
+    <color key="tintColor" white="0.33333333333333331" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
 </document>
