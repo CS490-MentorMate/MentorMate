@@ -11,6 +11,10 @@ import Parse
 
 class EditProfileViewController: UIViewController, UINavigationControllerDelegate, UIImagePickerControllerDelegate {
     
+    //salary range textfields
+    @IBOutlet weak var salaryMin: UITextField!
+    @IBOutlet weak var salaryMax: UITextField!
+    
     
     //courses
     @IBOutlet weak var course1: UITextField!
@@ -21,6 +25,7 @@ class EditProfileViewController: UIViewController, UINavigationControllerDelegat
     @IBOutlet weak var course6: UITextField!
     
    
+    @IBOutlet weak var availability: UITextField!
     @IBOutlet weak var coursesLabel: UILabel!
     @IBOutlet weak var bioTextField: UITextField!
     @IBOutlet weak var nameTextField: UITextField!
@@ -52,6 +57,19 @@ class EditProfileViewController: UIViewController, UINavigationControllerDelegat
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        if let availability = PFUser.current()?["availability"] as? String {
+            self.availability.text = availability
+        }
+        
+        
+        if let min = PFUser.current()?["minSalary"] as? String {
+            self.salaryMin.text = min
+        }
+        
+        if let max = PFUser.current()?["maxSalary"] as? String {
+            self.salaryMax.text = max
+               }
+        
         
         if let courses = PFUser.current()?["courses"] as? [String] {
             
@@ -80,6 +98,7 @@ class EditProfileViewController: UIViewController, UINavigationControllerDelegat
                 if (isTutor) {
                     self.profileTypeLabel.text = "You are a tutor"
                     self.coursesLabel.text = "Tutored Courses (6 Max)"
+                    
                 } else {
                     self.profileTypeLabel.text = "You are a student"
                     self.coursesLabel.text = "Desired Courses (6 Max)"
@@ -101,9 +120,14 @@ class EditProfileViewController: UIViewController, UINavigationControllerDelegat
     
     @IBAction func update(_ sender: Any) {
         
+        //update availability
+        PFUser.current()?["availability"] = self.availability.text
         
-        //add 6 courses as default "none"
+        //update min and max salary
+        PFUser.current()?["maxSalary"] = self.salaryMax.text
+        PFUser.current()?["minSalary"] = self.salaryMin.text
         
+        //update 6 courses
         PFUser.current()?.remove(forKey: "courses")
         
         PFUser.current()?.add(self.course1.text!, forKey:"courses")
