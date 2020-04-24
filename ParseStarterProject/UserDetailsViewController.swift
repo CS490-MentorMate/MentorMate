@@ -48,9 +48,19 @@ class UserDetailsViewController: UIViewController, UINavigationControllerDelegat
     @IBOutlet var errorLabel: UILabel!
     
     @IBAction func update(_ sender: Any) {
+        
         PFUser.current()?["name"] = "You do not have a name set!"
         
-         PFUser.current()?["name"] = "No biography set"
+         PFUser.current()?["biography"] = "No biography set"
+        
+        //add 6 courses as default "none"
+        PFUser.current()?.add("none", forKey:"courses")
+        PFUser.current()?.add("none", forKey:"courses")
+        PFUser.current()?.add("none", forKey:"courses")
+        PFUser.current()?.add("none", forKey:"courses")
+        PFUser.current()?.add("none", forKey:"courses")
+        PFUser.current()?.add("none", forKey:"courses")
+        
         
         PFUser.current()?["isTutor"] = !occupationSwitch.isOn
         PFUser.current()?["isTeaching"] = !likeToSwitch.isOn

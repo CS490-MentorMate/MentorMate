@@ -10,7 +10,18 @@ import UIKit
 import Parse
 
 class EditProfileViewController: UIViewController, UINavigationControllerDelegate, UIImagePickerControllerDelegate {
+    
+    
+    //courses
+    @IBOutlet weak var course1: UITextField!
+    @IBOutlet weak var course2: UITextField!
+    @IBOutlet weak var course3: UITextField!
+    @IBOutlet weak var course4: UITextField!
+    @IBOutlet weak var course5: UITextField!
+    @IBOutlet weak var course6: UITextField!
+    
    
+    @IBOutlet weak var coursesLabel: UILabel!
     @IBOutlet weak var bioTextField: UITextField!
     @IBOutlet weak var nameTextField: UITextField!
     @IBOutlet weak var profileTypeLabel: UILabel!
@@ -42,7 +53,18 @@ class EditProfileViewController: UIViewController, UINavigationControllerDelegat
         super.viewDidLoad()
         
         
-//          PFUser.current()?.addUniqueObjects(from: [displayedUserID], forKey: acceptedOrRejected
+        if let courses = PFUser.current()?["courses"] as? [String] {
+            
+            self.course1.text = courses[0];
+            self.course2.text = courses[1];
+            self.course3.text = courses[2];
+            self.course4.text = courses[3];
+            self.course5.text = courses[4];
+            self.course6.text = courses[5];
+            
+        }
+        
+        
         
         if let name = PFUser.current()?["name"] as? String {
                 self.nameTextField.text = name
@@ -57,8 +79,10 @@ class EditProfileViewController: UIViewController, UINavigationControllerDelegat
             if let isTutor = PFUser.current()?["isTutor"] as? Bool {
                 if (isTutor) {
                     self.profileTypeLabel.text = "You are a tutor"
+                    self.coursesLabel.text = "Tutored Courses (6 Max)"
                 } else {
                     self.profileTypeLabel.text = "You are a student"
+                    self.coursesLabel.text = "Desired Courses (6 Max)"
                 }
             }
         
@@ -78,6 +102,16 @@ class EditProfileViewController: UIViewController, UINavigationControllerDelegat
     @IBAction func update(_ sender: Any) {
         
         
+        //add 6 courses as default "none"
+        
+        PFUser.current()?.remove(forKey: "courses")
+        
+        PFUser.current()?.add(self.course1.text!, forKey:"courses")
+          PFUser.current()?.add(self.course2.text!, forKey:"courses")
+          PFUser.current()?.add(self.course3.text!, forKey:"courses")
+          PFUser.current()?.add(self.course4.text!, forKey:"courses")
+          PFUser.current()?.add(self.course5.text!, forKey:"courses")
+          PFUser.current()?.add(self.course6.text!, forKey:"courses")
         
         let imageData = UIImageJPEGRepresentation(profileImage.image!,0.1)
         
