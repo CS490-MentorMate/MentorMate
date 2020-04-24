@@ -48,6 +48,25 @@ class UserDetailsViewController: UIViewController, UINavigationControllerDelegat
     @IBOutlet var errorLabel: UILabel!
     
     @IBAction func update(_ sender: Any) {
+         
+        PFUser.current()?["availability"] = "Set your availability"
+        
+        PFUser.current()?["name"] = "Set your name"
+        
+        PFUser.current()?["biography"] = "Set your biography"
+        
+        PFUser.current()?["minSalary"] = "8.00"
+        PFUser.current()?["maxSalary"] = "8.00"
+        
+        //add 6 courses as default "none"
+        PFUser.current()?.add("none", forKey:"courses")
+        PFUser.current()?.add("none", forKey:"courses")
+        PFUser.current()?.add("none", forKey:"courses")
+        PFUser.current()?.add("none", forKey:"courses")
+        PFUser.current()?.add("none", forKey:"courses")
+        PFUser.current()?.add("none", forKey:"courses")
+        
+        
         PFUser.current()?["isTutor"] = !occupationSwitch.isOn
         PFUser.current()?["isTeaching"] = !likeToSwitch.isOn
         //let imageData = UIImagePNGRepresentation(userImage.image!)
