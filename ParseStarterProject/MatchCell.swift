@@ -17,6 +17,7 @@ class MatchCell: UITableViewCell {
     @IBOutlet weak var profilePicture: UIImageView!
     @IBOutlet weak var matchName: UILabel!
     @IBOutlet weak var messagesTextField: UITextField!
+    @IBOutlet weak var usernameLabel: UILabel!
     
     @IBAction func send(_ sender: Any) {
         var message = PFObject(className: "Message")
@@ -37,5 +38,5 @@ class MatchCell: UITableViewCell {
 
         // Configure the view for the selected state
     }
-
+    
 }

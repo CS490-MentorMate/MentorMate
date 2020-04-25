@@ -12,6 +12,10 @@ import Parse
 class SwipingViewController: UIViewController {
 
     @IBOutlet weak var swipeImage: UIImageView!
+    @IBOutlet weak var nameLabel: UILabel!
+    @IBOutlet weak var bioLabel: UILabel!
+    @IBOutlet weak var coursesLabel: UILabel!
+    
     var displayedUserID = ""
 
     
@@ -106,6 +110,25 @@ class SwipingViewController: UIViewController {
         
         query?.whereKey("objectId", notEqualTo: PFUser.current()?["objectId"])
         
+        /*var userCourses = [String]()
+        var i = 0
+        for course in PFUser.current()?["courses"] as! [String] {
+            if course == "none" {
+              userCourses[i] = "none1"
+            }
+            else {
+              userCourses[i] = course
+            }
+            i = i + 1
+        }
+        let queryArray = [PFUser.query()]
+        i = 0
+        for course in userCourses {
+            queryArray[i]?.whereKey("courses", contains: userCourses[i])
+        }
+        
+        PFQuery.orQuery(withSubqueries: queryArray?)*/
+        
         if let latitude = (PFUser.current()?["location"] as AnyObject).latitude {
             if let longitude = (PFUser.current()?["location"] as AnyObject).longitude {
                 query?.whereKey("location", withinGeoBoxFromSouthwest: PFGeoPoint(latitude: latitude - 1, longitude: longitude - 1), toNortheast: PFGeoPoint(latitude: latitude + 1, longitude: longitude + 1))
@@ -139,7 +162,16 @@ class SwipingViewController: UIViewController {
                             if let imageData = data {
                                 
                                 self.swipeImage.image = UIImage(data: imageData)
-                            
+                                self.nameLabel.text = user["name"] as! String
+                                self.bioLabel.text = user["biography"] as! String
+                                var courseListString = ""
+                                let courseListArray = user["courses"] as! [String]
+                                for course in courseListArray {
+                                    if (course != "none") {
+                                        courseListString += course
+                                    }
+                                }
+                                self.coursesLabel.text = courseListString
                             }
                             
                             
@@ -176,8 +208,6 @@ class SwipingViewController: UIViewController {
         
         // Do any additional setup after loading the view.
     }
-    
-    
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.identifier == "logoutSegue" {

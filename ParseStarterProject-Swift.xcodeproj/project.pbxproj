@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		287343BD245390EC00DD34AB /* ProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 287343BC245390EC00DD34AB /* ProfileViewController.swift */; };
 		2895FCE62448000E0033294A /* UserDetailsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2895FCE52448000E0033294A /* UserDetailsViewController.swift */; };
 		2895FCE8244801730033294A /* SwipingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2895FCE7244801730033294A /* SwipingViewController.swift */; };
 		289BF7C4244CD2F30022308D /* MatchesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 289BF7C3244CD2F30022308D /* MatchesViewController.swift */; };
@@ -24,6 +25,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		287343BC245390EC00DD34AB /* ProfileViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileViewController.swift; sourceTree = "<group>"; };
 		2895FCE52448000E0033294A /* UserDetailsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserDetailsViewController.swift; sourceTree = "<group>"; };
 		2895FCE7244801730033294A /* SwipingViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SwipingViewController.swift; sourceTree = "<group>"; };
 		289BF7C3244CD2F30022308D /* MatchesViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MatchesViewController.swift; sourceTree = "<group>"; };
@@ -99,6 +101,7 @@
 				2895FCE7244801730033294A /* SwipingViewController.swift */,
 				289BF7C3244CD2F30022308D /* MatchesViewController.swift */,
 				289BF7C5244CD3FF0022308D /* MatchCell.swift */,
+				287343BC245390EC00DD34AB /* ProfileViewController.swift */,
 			);
 			path = ParseStarterProject;
 			sourceTree = "<group>";
@@ -204,6 +207,7 @@
 				289BF7C6244CD3FF0022308D /* MatchCell.swift in Sources */,
 				2895FCE8244801730033294A /* SwipingViewController.swift in Sources */,
 				2895FCE62448000E0033294A /* UserDetailsViewController.swift in Sources */,
+				287343BD245390EC00DD34AB /* ProfileViewController.swift in Sources */,
 				86670A4224523DED001E1E3B /* EditProfileViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

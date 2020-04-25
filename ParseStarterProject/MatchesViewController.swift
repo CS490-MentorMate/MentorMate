@@ -13,6 +13,7 @@ class MatchesViewController: UIViewController, UITableViewDelegate, UITableViewD
 
     @IBOutlet weak var matchesTable: UITableView!
     
+    
     var images = [UIImage]()
     
     var names = [String]()
@@ -20,6 +21,8 @@ class MatchesViewController: UIViewController, UITableViewDelegate, UITableViewD
     var objectIds = [String]()
     
     var messages = [String]()
+    
+    var usernames = [String]()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -59,7 +62,8 @@ class MatchesViewController: UIViewController, UITableViewDelegate, UITableViewD
                                     self.messages.append(messageText)
                                     self.images.append(UIImage(data: imageData)!)
                                     self.objectIds.append(user.objectId!)
-                                    self.names.append(user.username!)
+                                    self.usernames.append(user.username!)
+                                    self.names.append(user["name"] as! String)
                                     self.matchesTable.reloadData()
                                     
                                 }
@@ -99,12 +103,12 @@ class MatchesViewController: UIViewController, UITableViewDelegate, UITableViewD
         
         cell.profilePicture.image = images[indexPath.row]
         cell.matchName.text = names[indexPath.row]
+        cell.usernameLabel.text = usernames[indexPath.row]
         cell.userIdLabel.text = objectIds[indexPath.row]
         cell.messagesLabel.text = messages[indexPath.row]
         
         return cell
     }
-    
 
     /*
     // MARK: - Navigation
