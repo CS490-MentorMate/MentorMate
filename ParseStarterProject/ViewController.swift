@@ -14,6 +14,7 @@ class ViewController: UIViewController {
 
     var signupMode = true
     
+    @IBOutlet var mentorMateLabel: UILabel!
     @IBOutlet weak var usernameField: UITextField!
     @IBOutlet weak var passwordField: UITextField!
     @IBOutlet weak var signupOrLoginButton: UIButton!
@@ -45,7 +46,8 @@ class ViewController: UIViewController {
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
         
-        
+        mentorMateLabel.layer.cornerRadius = 10
+        mentorMateLabel.layer.masksToBounds = true
         
     }
     

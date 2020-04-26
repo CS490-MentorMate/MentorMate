@@ -168,7 +168,7 @@ class SwipingViewController: UIViewController {
                                 let courseListArray = user["courses"] as! [String]
                                 for course in courseListArray {
                                     if (course != "none") {
-                                        courseListString += course
+                                        courseListString += course + " "
                                     }
                                 }
                                 self.coursesLabel.text = courseListString
