@@ -24,6 +24,8 @@ class MatchesViewController: UIViewController, UITableViewDelegate, UITableViewD
     
     var usernames = [String]()
     
+    var usersArray = [PFUser]()
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -65,7 +67,7 @@ class MatchesViewController: UIViewController, UITableViewDelegate, UITableViewD
                                     self.usernames.append(user.username!)
                                     self.names.append(user["name"] as! String)
                                     self.matchesTable.reloadData()
-                                    
+                                    self.usersArray.append(user)
                                 }
                                 
                             }
@@ -108,6 +110,17 @@ class MatchesViewController: UIViewController, UITableViewDelegate, UITableViewD
         cell.messagesLabel.text = messages[indexPath.row]
         
         return cell
+    }
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if (segue.identifier == "matchToProfile") {
+            let cell = sender as! UITableViewCell //selected cell
+            let index = matchesTable.indexPath(for: cell)! //index of selected cell
+            let profileViewController = segue.destination as! ProfileViewController
+            profileViewController.user = usersArray[index.row]
+            profileViewController.picture = images[index.row]
+            matchesTable.deselectRow(at: index, animated: true)
+        }
     }
 
     /*
