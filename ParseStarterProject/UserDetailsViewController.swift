@@ -10,7 +10,9 @@ import UIKit
 import Parse
 
 class UserDetailsViewController: UIViewController, UINavigationControllerDelegate, UIImagePickerControllerDelegate{
-
+    @IBOutlet weak var profileImageButton: UIButton!
+    @IBOutlet weak var updateButton: UIButton!
+    
     @IBOutlet var userImage: UIImageView!
     
     @IBAction func updateProfileImage(_ sender: Any) {
@@ -103,6 +105,12 @@ class UserDetailsViewController: UIViewController, UINavigationControllerDelegat
     override func viewDidLoad() {
         super.viewDidLoad()
 
+        updateButton.layer.cornerRadius = 10
+        updateButton.clipsToBounds = true
+              
+        profileImageButton.layer.cornerRadius = 10
+        profileImageButton.clipsToBounds = true
+               
         // Do any additional setup after loading the view.
         if let isTutor = PFUser.current()?["isTutor"] as? Bool {
             occupationSwitch.setOn(isTutor, animated: false)

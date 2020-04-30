@@ -105,7 +105,7 @@ class MatchesViewController: UIViewController, UITableViewDelegate, UITableViewD
         
         cell.profilePicture.image = images[indexPath.row]
         cell.matchName.text = names[indexPath.row]
-        cell.usernameLabel.text = usernames[indexPath.row]
+//        cell.usernameLabel.text = usernames[indexPath.row]
         cell.userIdLabel.text = objectIds[indexPath.row]
         cell.messagesLabel.text = messages[indexPath.row]
         

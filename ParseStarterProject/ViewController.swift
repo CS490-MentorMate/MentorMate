@@ -45,9 +45,14 @@ class ViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
+        signupOrLoginButton.layer.cornerRadius = 10
+        signupOrLoginButton.clipsToBounds = true
+       
+        changeSignupModeButton.layer.cornerRadius = 10
+        changeSignupModeButton.clipsToBounds = true
         
-        mentorMateLabel.layer.cornerRadius = 10
-        mentorMateLabel.layer.masksToBounds = true
+//        mentorMateLabel.layer.cornerRadius = 10
+//        mentorMateLabel.layer.masksToBounds = true
         
     }
     

@@ -190,6 +190,8 @@ class SwipingViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        bioLabel.lineBreakMode = .byWordWrapping
+        bioLabel.numberOfLines = 0
         
         let gesture = UIPanGestureRecognizer(target: self, action: #selector(self.wasDragged(gestureRecognizer:)))
         

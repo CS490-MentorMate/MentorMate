@@ -25,6 +25,7 @@ class EditProfileViewController: UIViewController, UINavigationControllerDelegat
     @IBOutlet weak var course6: UITextField!
     
    
+    @IBOutlet weak var updateButton: UIButton!
     @IBOutlet weak var availability: UITextField!
     @IBOutlet weak var coursesLabel: UILabel!
     @IBOutlet weak var bioTextField: UITextField!
@@ -56,6 +57,12 @@ class EditProfileViewController: UIViewController, UINavigationControllerDelegat
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        self.updateSuccessfulLabel.text = ""
+        
+        updateButton.layer.cornerRadius = 10
+        updateButton.clipsToBounds = true
+               
         
         if let availability = PFUser.current()?["availability"] as? String {
             self.availability.text = availability
